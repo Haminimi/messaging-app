@@ -24,6 +24,11 @@ export async function action({ request }) {
 	if (data.success) {
 		return redirect('/login');
 	} else {
+		toast.error(data.error, {
+			position: 'bottom-right',
+			autoClose: false,
+			/* theme: 'colored', */
+		});
 		return null;
 	}
 }
@@ -106,6 +111,7 @@ function SignUp() {
 					</p>
 				</Form>
 			</div>
+			<ToastContainer />
 		</div>
 	);
 }
