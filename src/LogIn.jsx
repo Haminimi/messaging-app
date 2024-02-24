@@ -1,18 +1,54 @@
-import { Form, redirect } from 'react-router-dom';
-
-export async function action({ request }) {
-	const formData = await request.formData();
-	const formattedData = Object.fromEntries(formData);
-	//Log in a user here
-	//const user = await logInUser(formattedData);
-	return redirect(`/users/${user._id}`);
-}
+import { Form, redirect, useNavigate } from 'react-router-dom';
+import { useContext, useEffect, useState } from 'react';
+import { AuthContext } from './App';
+import { ToastContainer, toast } from 'react-toastify';
 
 function LogIn() {
+	const navigate = useNavigate();
+	const { user, setUser } = useContext(AuthContext);
+
+	useEffect(() => {
+		if (user) {
+			navigate('/');
+		}
+	}, []);
+
+	function notifyError(message) {
+		toast.error(message, {
+			position: 'bottom-right',
+			autoClose: false,
+			/* theme: 'colored', */
+		});
+	}
+
+	async function handleSubmit(e) {
+		e.preventDefault();
+		const { email, password } = e.target;
+		const loginData = { email: email.value, password: password.value };
+		try {
+			const response = await fetch('http://localhost:3000/users/login', {
+				method: 'POST',
+				headers: { 'Content-Type': 'application/json' },
+				body: JSON.stringify(loginData),
+			});
+			const data = await response.json();
+			if (data.success) {
+				localStorage.setItem('token', data.token);
+				setUser(data.user);
+				return navigate(`/users/${data.user._id}`);
+			} else {
+				notifyError(data.message);
+				return null;
+			}
+		} catch (err) {
+			console.error(err);
+		}
+	}
+
 	return (
 		<div className="content-container">
 			<div className="log-in-container">
-				<Form method="post" id="log-in-form">
+				<Form method="post" id="log-in-form" onSubmit={handleSubmit}>
 					<label>
 						<span>Email</span>
 						<input
@@ -36,6 +72,7 @@ function LogIn() {
 					</p>
 				</Form>
 			</div>
+			<ToastContainer />
 		</div>
 	);
 }
