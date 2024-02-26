@@ -1,17 +1,17 @@
 import { Form, redirect, useNavigate } from 'react-router-dom';
 import { useContext, useEffect, useState } from 'react';
-import { AuthContext } from './App';
 import { ToastContainer, toast } from 'react-toastify';
+import { useAuth } from './AuthProvider';
 
 function LogIn() {
-	const navigate = useNavigate();
-	const { user, setUser } = useContext(AuthContext);
+	const auth = useAuth();
+	/* const user = auth.user; */
 
-	useEffect(() => {
+	/* 	useEffect(() => {
 		if (user) {
 			navigate('/');
 		}
-	}, []);
+	}, []); */
 
 	function notifyError(message) {
 		toast.error(message, {
@@ -21,29 +21,17 @@ function LogIn() {
 		});
 	}
 
-	async function handleSubmit(e) {
+	const handleSubmit = (e) => {
 		e.preventDefault();
 		const { email, password } = e.target;
 		const loginData = { email: email.value, password: password.value };
-		try {
-			const response = await fetch('http://localhost:3000/users/login', {
-				method: 'POST',
-				headers: { 'Content-Type': 'application/json' },
-				body: JSON.stringify(loginData),
-			});
-			const data = await response.json();
-			if (data.success) {
-				localStorage.setItem('token', data.token);
-				setUser(data.user);
-				return navigate(`/users/${data.user._id}`);
-			} else {
-				notifyError(data.message);
-				return null;
+		if (email !== '' && password !== '') {
+			const response = auth.logInAction(loginData);
+			if (response.error) {
+				notifyError(response.error);
 			}
-		} catch (err) {
-			console.error(err);
 		}
-	}
+	};
 
 	return (
 		<div className="content-container">
