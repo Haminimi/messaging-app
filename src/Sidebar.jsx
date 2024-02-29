@@ -1,5 +1,4 @@
-import { Link, NavLink, useNavigate } from 'react-router-dom';
-import { useContext, useState } from 'react';
+import { Link, NavLink } from 'react-router-dom';
 import { useAuth } from './AuthProvider';
 
 function Sidebar() {
@@ -8,26 +7,30 @@ function Sidebar() {
 
 	return (
 		<div className="sidebar">
-			<h1>Root</h1>
 			<nav className="sidebar-nav">
 				<NavLink
 					to={`/`}
 					className={({ isActive, isPending }) => {
-						return isActive ? 'active' : isPending ? 'pending' : '';
+						return `sidebar-link ${
+							isActive ? 'active' : isPending ? 'pending' : ''
+						}`;
 					}}
 				>
 					Home
 				</NavLink>
 				{user ? (
-					<div className="sidebar-div">
+					<div className="sidebar-wrapper">
 						<NavLink
 							to={`users/${user._id}`}
+							end
 							className={({ isActive, isPending }) => {
-								return isActive
-									? 'active'
-									: isPending
-									? 'pending'
-									: '';
+								return `sidebar-link ${
+									isActive
+										? 'active'
+										: isPending
+										? 'pending'
+										: ''
+								}`;
 							}}
 						>
 							My profile
@@ -36,29 +39,37 @@ function Sidebar() {
 							to={`/users`}
 							end
 							className={({ isActive, isPending }) => {
-								return isActive
-									? 'active'
-									: isPending
-									? 'pending'
-									: '';
+								return `sidebar-link ${
+									isActive
+										? 'active'
+										: isPending
+										? 'pending'
+										: ''
+								}`;
 							}}
 						>
 							Users
 						</NavLink>
-						<Link to={`/`} onClick={() => auth.logout()}>
+						<Link
+							className="sidebar-link"
+							to={`/login`}
+							onClick={() => auth.logout()}
+						>
 							Log out
 						</Link>
 					</div>
 				) : (
-					<div className="sidebar-div">
+					<div className="sidebar-wrapper">
 						<NavLink
 							to={`login`}
 							className={({ isActive, isPending }) => {
-								return isActive
-									? 'active'
-									: isPending
-									? 'pending'
-									: '';
+								return `sidebar-link ${
+									isActive
+										? 'active'
+										: isPending
+										? 'pending'
+										: ''
+								}`;
 							}}
 						>
 							Log in
@@ -66,11 +77,13 @@ function Sidebar() {
 						<NavLink
 							to={`signup`}
 							className={({ isActive, isPending }) => {
-								return isActive
-									? 'active'
-									: isPending
-									? 'pending'
-									: '';
+								return `sidebar-link ${
+									isActive
+										? 'active'
+										: isPending
+										? 'pending'
+										: ''
+								}`;
 							}}
 						>
 							Sign up
@@ -79,7 +92,15 @@ function Sidebar() {
 				)}
 			</nav>
 			<div className="app-name">
-				<p>...</p>
+				<p>
+					<b>
+						ChitChatHub{' '}
+						<a href="https://github.com/Haminimi">
+							<i className="devicon-github-original"></i>
+						</a>
+					</b>
+				</p>
+				<p></p>
 			</div>
 		</div>
 	);
