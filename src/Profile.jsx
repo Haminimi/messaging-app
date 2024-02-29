@@ -1,25 +1,12 @@
-import {
-	Form,
-	useLoaderData,
-	Link,
-	useFetcher,
-	useNavigate,
-	useLocation,
-	useParams,
-} from 'react-router-dom';
-import { ToastContainer, toast } from 'react-toastify';
-import { AuthContext } from './App';
-import { useContext } from 'react';
-import { useEffect } from 'react';
-import userAvatar from './assets/user.png';
+import { Link, useLoaderData, useParams } from 'react-router-dom';
+import Loader from 'react-loaders';
 import { useAuth } from './AuthProvider';
-/* import { ObjectId } from 'mongodb'; */
 
 export async function loader({ params }) {
 	try {
 		const token = localStorage?.getItem('token');
 		const response = await fetch(
-			`http://localhost:3000/users/${params.userId}`,
+			`${import.meta.env.VITE_BACKEND_URL}/users/${params.userId}`,
 			{
 				headers: {
 					Authorization: `Bearer ${token}`,
@@ -30,29 +17,29 @@ export async function loader({ params }) {
 		const profile = data.user;
 		return { profile };
 	} catch (err) {
-		console.log(err);
+		console.error(err);
 		return null;
 	}
 }
 
-function User() {
+function Profile() {
 	const auth = useAuth();
 	const user = auth.user;
-	const token = auth.token;
 	const setUser = auth.setUser;
+	const token = auth.token;
 	const { userId } = useParams();
-	const {profile} = useLoaderData()
+	const { profile } = useLoaderData();
 	const isCurrentUserProfile = user?._id === userId;
 
 	function isFriend() {
-		return user?.friends.some((friend) => friend === userId);
+		return user.friends.some((friend) => friend === userId);
 	}
 	const friend = isFriend();
 
 	async function addToFriends() {
 		try {
 			const response = await fetch(
-				`http://localhost:3000/users/${user._id}/friends`,
+				`${import.meta.env.VITE_BACKEND_URL}/users/${user._id}/friends`,
 				{
 					method: 'POST',
 					headers: {
@@ -75,31 +62,36 @@ function User() {
 				isCurrentUserProfile ? (
 					<div className="my-profile">
 						<img
-							src={`http://localhost:3000${user?.avatar}`}
+							src={`${import.meta.env.VITE_BACKEND_URL}/${
+								user.avatar
+							}`}
 							className="profile-avatar"
 						></img>
 						<div className="my-profile-information">
-							<h1>
-								{user?.firstName} {user?.lastName}
+							<h1 className="profile-user-name">
+								{user.firstName} {user.lastName}
 							</h1>
-							<p>{user?.email}</p>
-							<p>{user?.about}</p>
-							<div className="my-profile-buttons">
-								<Link to={`/users/${user?._id}/edit`}>
-									<button>Edit</button>
-								</Link>
-							</div>
+							<p className="profile-email">{user.email}</p>
+							<p className="profile-about">{user.about}</p>
+							<Link
+								to={`/users/${user._id}/edit`}
+								className="edit-link"
+							>
+								<button className="edit-button">Edit</button>
+							</Link>
 						</div>
 					</div>
 				) : (
 					<div className="user-profile">
 						<img
-							src={`http://localhost:3000${profile?.avatar}`}
+							src={`${import.meta.env.VITE_BACKEND_URL}/${
+								profile?.avatar
+							}`}
 							className="profile-avatar"
 						></img>
-						<div className="my-profile-information">
-							<h1>
-								{profile?.firstName} {profile?.lastName}{' '}
+						<div className="user-profile-information">
+							<h1 className="profile-user-name">
+								{profile.firstName} {profile.lastName}{' '}
 								<button
 									className="favorite-button"
 									onClick={addToFriends}
@@ -115,16 +107,17 @@ function User() {
 									)}
 								</button>
 							</h1>
-							<p>{profile?.about}</p>
+							<p className="profile-about">{profile.about}</p>
 						</div>
 					</div>
 				)
 			) : (
-				<h1>Loading</h1>
+				<div className="loader-container">
+					<Loader type="line-scale" active />
+				</div>
 			)}
-			<ToastContainer />
 		</div>
 	);
 }
 
-export default User;
+export default Profile;
