@@ -1,33 +1,34 @@
-import { Form, redirect, useNavigate } from 'react-router-dom';
-import { useContext, useEffect, useState } from 'react';
-import { ToastContainer, toast } from 'react-toastify';
+import { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useAuth } from './AuthProvider';
+import { ToastContainer, toast } from 'react-toastify';
 
 function LogIn() {
 	const auth = useAuth();
-	/* const user = auth.user; */
+	const user = auth.user;
+	const navigate = useNavigate();
 
-	/* 	useEffect(() => {
+	useEffect(() => {
 		if (user) {
 			navigate('/');
 		}
-	}, []); */
+	}, []);
 
 	function notifyError(message) {
 		toast.error(message, {
 			position: 'bottom-right',
 			autoClose: false,
-			/* theme: 'colored', */
+			theme: 'colored',
 		});
 	}
 
-	const handleSubmit = (e) => {
+	const handleSubmit = async (e) => {
 		e.preventDefault();
 		const { email, password } = e.target;
 		const loginData = { email: email.value, password: password.value };
 		if (email !== '' && password !== '') {
-			const response = auth.logInAction(loginData);
-			if (response.error) {
+			const response = await auth.logInAction(loginData);
+			if (response?.error) {
 				notifyError(response.error);
 			}
 		}
@@ -35,8 +36,8 @@ function LogIn() {
 
 	return (
 		<div className="content-container">
-			<div className="log-in-container">
-				<Form method="post" id="log-in-form" onSubmit={handleSubmit}>
+			<div className="login-form-wrapper">
+				<form method="post" id="login-form" onSubmit={handleSubmit}>
 					<label>
 						<span>Email</span>
 						<input
@@ -56,9 +57,11 @@ function LogIn() {
 						/>
 					</label>
 					<p>
-						<button type="submit">Log In</button>
+						<button type="submit" className="login-button">
+							Log In
+						</button>
 					</p>
-				</Form>
+				</form>
 			</div>
 			<ToastContainer />
 		</div>
