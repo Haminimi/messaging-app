@@ -1,15 +1,17 @@
+import { useEffect } from 'react';
 import { Form, redirect, useNavigate } from 'react-router-dom';
-import { useContext, useEffect, useState } from 'react';
-import { AuthContext } from './App';
+import { useAuth } from './AuthProvider';
 import { ToastContainer, toast } from 'react-toastify';
 
 async function createUser(userData) {
 	try {
-		const response = await fetch('http://localhost:3000/users', {
-			method: 'POST',
-			headers: { 'Content-Type': 'application/json' },
-			body: JSON.stringify(userData),
-		});
+		const response = await fetch(
+			`${import.meta.env.VITE_BACKEND_URL}/users`,
+			{
+				method: 'POST',
+				body: userData,
+			}
+		);
 		const data = await response.json();
 		return data;
 	} catch (err) {
@@ -19,22 +21,22 @@ async function createUser(userData) {
 
 export async function action({ request }) {
 	const formData = await request.formData();
-	const formattedData = Object.fromEntries(formData);
-	const data = await createUser(formattedData);
+	const data = await createUser(formData);
 	if (data.success) {
 		return redirect('/login');
 	} else {
 		toast.error(data.error, {
 			position: 'bottom-right',
 			autoClose: false,
-			/* theme: 'colored', */
+			theme: 'colored',
 		});
 		return null;
 	}
 }
 
 function SignUp() {
-	const { user } = useContext(AuthContext);
+	const auth = useAuth();
+	const user = auth.user;
 	const navigate = useNavigate();
 
 	useEffect(() => {
@@ -45,10 +47,10 @@ function SignUp() {
 
 	return (
 		<div className="content-container">
-			<div className="sign-up-container">
+			<div className="signup-form-wrapper">
 				<Form
 					method="post"
-					id="sign-up-form"
+					id="signup-form"
 					encType="multipart/form-data"
 				>
 					<p>
@@ -102,12 +104,26 @@ function SignUp() {
 						<span>About me</span>
 						<textarea name="about" rows={3} />
 					</label>
-					<label>
-						<span>Avatar</span>
-						<input type="file" name="avatar" />
-					</label>
-					<p>
-						<button type="submit">Sign Up</button>
+					<div className="form-group">
+						<label htmlFor="signup-form-avatar">
+							<span>Avatar</span>
+							<p className="choose-avatar-button" role="button">
+								Choose File
+							</p>
+						</label>
+						<input
+							id="signup-form-avatar"
+							type="file"
+							name="avatar"
+							accept="image/*"
+							hidden
+							aria-hidden="true"
+						/>
+					</div>
+					<p className="signup-button-wrapper">
+						<button type="submit" className="signup-button">
+							Sign Up
+						</button>
 					</p>
 				</Form>
 			</div>
