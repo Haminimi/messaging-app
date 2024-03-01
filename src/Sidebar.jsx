@@ -1,5 +1,5 @@
 import { Link, NavLink } from 'react-router-dom';
-import { useAuth } from './AuthProvider';
+import { useAuth } from './context/AuthProvider';
 
 function Sidebar() {
 	const auth = useAuth();
@@ -95,8 +95,14 @@ function Sidebar() {
 				<p>
 					<b>
 						ChitChatHub{' '}
-						<a href="https://github.com/Haminimi">
-							<i className="devicon-github-original"></i>
+						<a
+							href="https://github.com/Haminimi"
+							aria-label="GitHub"
+						>
+							<i
+								className="devicon-github-original"
+								aria-hidden="true"
+							></i>
 						</a>
 					</b>
 				</p>

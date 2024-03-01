@@ -1,6 +1,6 @@
 import { Link, useLoaderData, useParams } from 'react-router-dom';
 import Loader from 'react-loaders';
-import { useAuth } from './AuthProvider';
+import { useAuth } from './context/AuthProvider';
 
 export async function loader({ params }) {
 	try {

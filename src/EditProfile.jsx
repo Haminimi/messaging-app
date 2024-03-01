@@ -1,6 +1,6 @@
 import { useState, useRef } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import { useAuth } from './AuthProvider';
+import { useAuth } from './context/AuthProvider';
 import { ToastContainer, toast } from 'react-toastify';
 
 function EditProfile() {

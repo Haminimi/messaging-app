@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { Form, redirect, useNavigate } from 'react-router-dom';
-import { useAuth } from './AuthProvider';
+import { useAuth } from './context/AuthProvider';
 import { ToastContainer, toast } from 'react-toastify';
 
 async function createUser(userData) {
