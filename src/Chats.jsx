@@ -36,7 +36,9 @@ function Chats() {
 			}
 		}
 
-		fetchChats();
+		if (authUser) {
+			fetchChats();
+		}
 	}, [authUser, token]);
 
 	return (
