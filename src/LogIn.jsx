@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useAuth } from './AuthProvider';
+import { useAuth } from './context/AuthProvider';
 import { ToastContainer, toast } from 'react-toastify';
 
 function LogIn() {
@@ -27,7 +27,7 @@ function LogIn() {
 		const { email, password } = e.target;
 		const loginData = { email: email.value, password: password.value };
 		if (email !== '' && password !== '') {
-			const response = await auth.logInAction(loginData);
+			const response = await auth.login(loginData);
 			if (response?.error) {
 				notifyError(response.error);
 			}
