@@ -242,3 +242,70 @@
 .users-header {
 	margin-bottom: 10px;
 }
+
+.my-profile,
+.user-profile {
+	display: flex;
+	gap: 50px;
+	padding: 50px;
+}
+
+.my-profile-information,
+.user-profile-information {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	gap: 10px;
+	width: fit-content;
+}
+
+.profile-avatar {
+	width: 250px;
+	height: 250px;
+	object-fit: cover;
+	object-position: center;
+	border-radius: 50%;
+}
+
+.profile-user-name {
+	font-family: 'Pacifico', cursive;
+}
+
+.profile-about,
+.profile-email {
+	font-size: 24px;
+}
+
+.profile-email {
+	color: lightslategray;
+}
+
+.edit-link {
+	margin-top: 30px;
+}
+
+.edit-link,
+.edit-button {
+	width: 100%;
+}
+
+.favorite-button {
+	padding: 0px;
+	border: none;
+}
+
+.favorite-button:hover,
+.favorite-button:focus {
+	outline: none;
+}
+
+.favorite-icon,
+.favorite-icon-friend {
+	font-size: 55px;
+	color: crimson;
+	transition: color 0.15s linear;
+}
+
+.favorite-icon-friend {
+	font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+}
