@@ -35,3 +35,11 @@
 .error-message {
 	font-size: 28px;
 }
+
+#outlet-container {
+	width: 70vw;
+}
+
+.outlet-loading {
+	opacity: 0.25;
+}
