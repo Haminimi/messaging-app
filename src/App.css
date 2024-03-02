@@ -143,3 +143,43 @@
 	font-weight: bold;
 	color: var(--theme);
 }
+
+.chats {
+	display: flex;
+	flex-direction: column;
+	gap: 20px;
+	width: 70%;
+	min-height: 100vh;
+	padding: 10px 30px;
+}
+
+.no-chats-message,
+.no-messages-message {
+	font-size: 24px;
+}
+
+.chats-header {
+	font-size: 40px;
+}
+
+.chats-user,
+.users-list-user {
+	display: flex;
+	align-items: center;
+	gap: 20px;
+	padding: 20px;
+	border: 1px solid #e3e3e3;
+	border-radius: 10px;
+	background-color: #f7f7f7;
+	box-shadow: 0 0px 1px hsla(0, 0%, 0%, 0.2), 0 1px 2px hsla(0, 0%, 0%, 0.2);
+}
+
+.chats-user:hover {
+	box-shadow: 0 0px 1px hsla(0, 0%, 0%, 0.6), 0 1px 2px hsla(0, 0%, 0%, 0.2);
+}
+
+.chats-avatar {
+	width: 50px;
+	object-fit: cover;
+	object-position: center;
+}
