@@ -113,3 +113,33 @@
 	color: #3992ff;
 	transition: color 0.15s linear;
 }
+
+.home-container {
+	display: flex;
+}
+
+.home-login {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	gap: 30px;
+	height: 100vh;
+	padding: 30px;
+	color: var(--sidebar-link-active);
+}
+
+.home-login-message {
+	font-family: var(--header-font-family);
+	font-size: 55px;
+}
+
+.home-login-buttons {
+	display: flex;
+	gap: 30px;
+}
+
+.welcome-word {
+	font-weight: bold;
+	color: var(--theme);
+}
