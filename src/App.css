@@ -8,3 +8,30 @@
 .loader > div > div {
 	background-color: #3992ff;
 }
+
+.main-container {
+	display: flex;
+	width: 100%;
+	min-height: 100vh;
+}
+
+.error-page {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	gap: 20px;
+	height: 100vh;
+}
+
+.error-header {
+	font-size: 90px;
+}
+
+.exclamation-mark {
+	color: var(--theme);
+}
+
+.error-message {
+	font-size: 28px;
+}
