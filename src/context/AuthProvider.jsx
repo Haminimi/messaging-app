@@ -9,6 +9,7 @@ const AuthProvider = ({ children }) => {
 	const [token, setToken] = useState(localStorage.getItem('token') || '');
 	const navigate = useNavigate();
 	const [loading, setLoading] = useState(true);
+	const [loadingUser, setLoadingUser] = useState(true);
 
 	async function checkAuth() {
 		try {
@@ -30,6 +31,7 @@ const AuthProvider = ({ children }) => {
 			console.error(err);
 		} finally {
 			setLoading(false);
+			setLoadingUser(false);
 		}
 	}
 
@@ -62,12 +64,13 @@ const AuthProvider = ({ children }) => {
 			}
 		} catch (err) {
 			console.error(err);
+		} finally {
+			setLoadingUser(false);
 		}
 	}
 
 	async function logout() {
 		try {
-			/* await fetch(`${import.meta.env.VITE_BACKEND_URL}/users/logout`); */
 			setUser(null);
 			setToken('');
 			localStorage.removeItem('token');
@@ -76,7 +79,7 @@ const AuthProvider = ({ children }) => {
 		}
 	}
 
-	if (loading) {
+	if (loading || loadingUser) {
 		return (
 			<div className="loader-container">
 				<Loader type="line-scale" active />
