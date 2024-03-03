@@ -60,8 +60,13 @@ function EditProfile() {
 
 	return (
 		<div className="content-container">
-			<div className="edit-form-wrapper">
-				<form ref={formRef} id="edit-form" onSubmit={handleSubmit}>
+			<div className="form-wrapper edit-form-wrapper">
+				<form
+					id="edit-form"
+					className="form"
+					ref={formRef}
+					onSubmit={handleSubmit}
+				>
 					<p>
 						<span>Name</span>
 						<input
@@ -103,7 +108,11 @@ function EditProfile() {
 					<div className="form-group">
 						<label htmlFor="edit-form-avatar">
 							<span>Avatar</span>
-							<p className="choose-avatar-button" role="button">
+							<p
+								className="choose-avatar-button"
+								role="button"
+								tabIndex={0}
+							>
 								Choose File
 							</p>
 						</label>
@@ -117,7 +126,9 @@ function EditProfile() {
 						/>
 					</div>
 					<p className="edit-form-buttons">
-						<button type="submit">Save</button>
+						<button type="submit" className="save-button">
+							Save
+						</button>
 						<button
 							type="button"
 							onClick={() => navigate(-1)}

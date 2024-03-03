@@ -36,8 +36,13 @@ function LogIn() {
 
 	return (
 		<div className="content-container">
-			<div className="login-form-wrapper">
-				<form method="post" id="login-form" onSubmit={handleSubmit}>
+			<div className="form-wrapper login-form-wrapper">
+				<form
+					id="login-form"
+					className="form"
+					method="post"
+					onSubmit={handleSubmit}
+				>
 					<label>
 						<span>Email</span>
 						<input

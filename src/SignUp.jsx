@@ -47,10 +47,11 @@ function SignUp() {
 
 	return (
 		<div className="content-container">
-			<div className="signup-form-wrapper">
+			<div className="form-wrapper signup-form-wrapper">
 				<Form
-					method="post"
 					id="signup-form"
+					className="form"
+					method="post"
 					encType="multipart/form-data"
 				>
 					<p>

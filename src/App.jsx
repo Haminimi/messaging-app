@@ -1,7 +1,7 @@
 import { Outlet, useNavigation } from 'react-router-dom';
 import Sidebar from './Sidebar';
 import AuthProvider from './context/AuthProvider';
-import './App.css';
+import './stylesheets/App.css';
 import 'react-toastify/dist/ReactToastify.css';
 import 'loaders.css/loaders.min.css';
 

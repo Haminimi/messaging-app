@@ -41,7 +41,7 @@ function Users() {
 												import.meta.env.VITE_BACKEND_URL
 											}/${user.avatar}`}
 											alt=""
-											className="chats-avatar"
+											className="users-avatar"
 										/>
 										<p>
 											{user.firstName} {user.lastName}
