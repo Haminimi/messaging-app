@@ -1,3 +1,12 @@
+:root {
+	--text-color: hsla(0, 0%, 0%, 0.7);
+	--theme: #3992ff;
+	--primary-light: #213f99;
+	--sidebar-link-active: #01257d;
+	--chat-background: #e3e3e3;
+	--header-font-family: 'Madimi One', sans-serif;
+}
+
 .loader-container {
 	display: flex;
 	justify-content: center;
@@ -41,7 +50,7 @@
 }
 
 #outlet-container {
-	width: 70vw;
+	width: 73vw;
 }
 
 .outlet-loading {
@@ -57,14 +66,11 @@
 }
 
 .sidebar {
-	width: 30vw;
+	width: 27vw;
 	position: relative;
 	padding-top: 20px;
-	font-family: 'Josefin Sans', sans-serif;
 	font-size: 28px;
-	border-right: solid 1px #e3e3e3;
-	border-top: 1px solid #e3e3e3;
-	background-color: #f7f7f7;
+	background-color: var(--primary-light);
 }
 
 .sidebar-nav {
@@ -86,12 +92,12 @@
 	width: 70%;
 	padding: 5px;
 	padding-left: 10px;
-	border-radius: 10px;
-	color: dimgray;
+	border-radius: 5px;
+	color: white;
 }
 
 .sidebar-link:hover {
-	background-color: #e3e3e3;
+	background-color: #2b4da1;
 }
 
 .sidebar-link.active,
@@ -109,12 +115,12 @@
 	position: absolute;
 	left: 0px;
 	bottom: 0px;
-	border-top: 2px solid #e3e3e3;
-	color: dimgray;
+	font-family: var(--header-font-family);
+	color: white;
 }
 
 .devicon-github-original {
-	color: #3992ff;
+	color: white;
 	transition: color 0.15s linear;
 }
 
@@ -134,13 +140,14 @@
 }
 
 .home-login-message {
-	font-family: var(--header-font-family);
+	font-family: 'Quicksand', sans-serif;
 	font-size: 55px;
 }
 
 .home-login-buttons {
 	display: flex;
 	gap: 30px;
+	font-size: 20px;
 }
 
 .signup-button-wrapper {
@@ -151,6 +158,8 @@
 .home-login-button {
 	width: auto;
 	box-shadow: none;
+	background-color: var(--sidebar-link-active);
+	color: white;
 }
 
 .welcome-word {
@@ -164,7 +173,6 @@
 	gap: 20px;
 	width: 70%;
 	min-height: 100vh;
-	padding: 10px 30px;
 }
 
 .no-chats-message,
@@ -173,7 +181,14 @@
 }
 
 .chats-header {
-	font-size: 40px;
+	display: flex;
+	align-items: center;
+	height: 10vh;
+	padding: 10px 20px;
+	text-align: left;
+	font-size: 35px;
+	background-color: var(--sidebar-link-active);
+	color: white;
 }
 
 .chats-user,
@@ -188,8 +203,9 @@
 	box-shadow: 0 0px 1px hsla(0, 0%, 0%, 0.2), 0 1px 2px hsla(0, 0%, 0%, 0.2);
 }
 
-.chats-user:hover {
-	box-shadow: 0 0px 1px hsla(0, 0%, 0%, 0.6), 0 1px 2px hsla(0, 0%, 0%, 0.2);
+.chats-user {
+	margin-left: 20px;
+	margin-right: 20px;
 }
 
 .chats-avatar,
@@ -201,14 +217,18 @@
 
 .friends {
 	width: 30%;
-	padding: 10px;
-	border-left: 1px solid #e3e3e3;
 	background-color: #f7f7f7;
 }
 
 .friends-header {
+	display: flex;
+	align-items: center;
+	height: 10vh;
+	margin-bottom: 15px;
+	padding: 5px 10px;
 	font-family: var(--header-font-family);
-	margin-bottom: 10px;
+	background-color: var(--primary-light);
+	color: white;
 }
 
 .friends-list {
@@ -216,6 +236,7 @@
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
+	gap: 10px;
 	width: 100%;
 }
 
@@ -224,7 +245,7 @@
 	justify-content: space-between;
 	align-items: center;
 	gap: 10px;
-	width: 95%;
+	width: 90%;
 	padding: 10px;
 	border: 2px solid #e3e3e3;
 	border-radius: 10px;
@@ -334,8 +355,8 @@
 	height: 10vh;
 	padding: 20px;
 	font-size: 30px;
-	background-color: var(--chat-header-background);
-	color: var(--chat-header-text);
+	background-color: var(--sidebar-link-active);
+	color: white;
 }
 
 .chat-messages {
@@ -528,7 +549,7 @@
 }
 
 .form-group > label {
-	width: 140%;
+	width: 142%;
 }
 
 .form-group > label > p {
@@ -554,6 +575,6 @@
 .edit-button {
 	width: 100%;
 	font-size: 20px;
-	background-color: var(--button-background);
+	background-color: var(--sidebar-link-active);
 	color: white;
 }
