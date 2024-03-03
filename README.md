@@ -2,7 +2,7 @@
 ## Description
 A basic messaging app with authentication and authorization using JWT. [The project](https://www.theodinproject.com/lessons/nodejs-messaging-app) is a part of [The Odin Project](https://www.theodinproject.com/dashboard)'s Node course within [The Odin Project](https://www.theodinproject.com/dashboard)'s curriculum. The Odin Project provides a high quality web development education maintained by an open source community.
 ## Live Preview and Backend
-You can check out [the app here](), and [the backend code here](https://github.com/Haminimi/messaging-app-backend). 
+You can check out [the app here](https://messaging-app-rosy.vercel.app/), and [the backend code here](https://github.com/Haminimi/messaging-app-backend). 
 If you don't want to create a new account, you can log in with these credentials: 
 ```js
 jane@gmail.com
