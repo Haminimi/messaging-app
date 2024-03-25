@@ -1,4 +1,5 @@
 # ChitChatHub - Messaging App
+![Screenshot of the ChitChatHub app.](/screenshot.png)
 ## Description
 A basic messaging app with authentication and authorization using JWT. [The project](https://www.theodinproject.com/lessons/nodejs-messaging-app) is a part of [The Odin Project](https://www.theodinproject.com/dashboard)'s Node course within [The Odin Project](https://www.theodinproject.com/dashboard)'s curriculum. The Odin Project provides a high quality web development education maintained by an open source community.
 ## Live Preview and Backend
@@ -28,8 +29,8 @@ Password123!
 - Vanilla CSS
 
 **Tools**
-- Git
 - Visual Studio Code
+- Git
 ## Covered Topics
 **This section mentions the main topics covered during project work and prior lessons**
 - Jamstack
