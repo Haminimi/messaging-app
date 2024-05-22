@@ -47,9 +47,4 @@ Note on JWT verification: Even though it is inconsistent approach, I have used b
 - Icon used for the favicon image is one of the [Email icons created by Pixel perfect - Flaticon](https://www.flaticon.com/free-icons/email).
 - [User icons created by Smashicons - Flaticon](https://www.flaticon.com/free-icons/user)
 - [User icons created by kmg design - Flaticon](https://www.flaticon.com/free-icons/user)
-## Author
-- [GitHub](https://github.com/Haminimi)
-- [Exercism](https://exercism.org/profiles/Haminimi)
-- [LeetCode](https://leetcode.com/Haminimi/)
-- Email: haminimi.dev@gmail.com
 ## Happy coding!
